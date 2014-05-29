@@ -1,1 +1,7 @@
 C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\obj\Debug\NURL.csprojResolveAssemblyReference.cache
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\bin\Debug\NURL.exe
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\bin\Debug\NURL.pdb
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\bin\Debug\nunit.framework.dll
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\bin\Debug\nunit.framework.xml
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\obj\Debug\NURL.exe
+C:\Users\Cédric\Documents\GitHub\CSharpProjectsExercices\NURL\NURL\obj\Debug\NURL.pdb

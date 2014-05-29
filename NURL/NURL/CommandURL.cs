@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Net;
 
 namespace NURL
 {
@@ -22,7 +23,24 @@ namespace NURL
 
         public void GetData(string url)
         {
-
+            try
+            {
+                var client = new WebClient();
+                Datas =  RemoveRetourChariot((client.DownloadString(url)));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR " + ex.Message);
+            }
+        }
+        
+        public string RemoveRetourChariot(string str)
+        {
+            if (str != null)
+            {
+                str.Remove(str.Length - 2);
+            }
+            return str;
         }
 
         public void Save(string path, string datas)
@@ -30,10 +48,10 @@ namespace NURL
 
         }
 
-        public string GetFileName(string url)
-        {
+       //public string GetFileName(string url)
+       //{
 
-        }
+       //}
 
         public void testConnectionTime(string url, int times)
         {
@@ -96,15 +114,13 @@ namespace NURL
                                 Console.WriteLine("Invalid option");
                         }
                         break;
+                 	case "-save":
+	                        string file = consoleArgs[i + 1];
+	                        Save(file, Datas);
+                    break;
                 }
             }
         }
-
-        public string RemoveRetourChariot(string str)
-        {
-
-        }
-
 
     }
 }
