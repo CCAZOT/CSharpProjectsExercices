@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.IO;
 using NUnit.Framework;
 
 
@@ -36,5 +37,50 @@ namespace NURL
 
 
 		}
+		[Test]
+        public void FileContentShouldBeEqualToStringVariable()
+        {
+
+    
+            var commands = new string[] { "get", "-url", @"https://ccazot.github.io","-save",@"c:\test\testfile.htm" };
+            var expectedFileContent = @"<!DOCTYPE html><html><body><h1>Hello World</h1><p>I'm hosted with GitHub Pages.</p></body></html>"+"\n";
+
+            var app = new CommandURL();
+            app.DispatchArgs(commands);
+            var fileContent = File.ReadAllText(@"c:\test\testfile.htm");
+
+
+            Assert.AreEqual(expectedFileContent, fileContent);
+        }
+
+        [Test]
+        public void GetAverageTime()
+        {
+            var app = new CommandURL();
+
+            //given
+            var commands = new string[] { "test", "-url", @"https://ccazot.github.io", "-time", "3","-avg"  };
+    
+            //when
+            app.DispatchArgs(commands);
+
+            //then
+            Assert.IsTrue(app.avg > 0);
+        }
+
+        [Test]
+        public void TestConnection()
+        {
+            var app = new CommandURL();
+           
+            //given
+            var commands = new string[] { "test", "-url", @"https://ccazot.github.io", "-time", "3" };
+
+            //when
+            app.DispatchArgs(commands);
+
+            //then
+            Assert.IsTrue(app.Time > 0);
+        }
 	}
 }

@@ -8,6 +8,7 @@
  */
 using System;
 using System.Net;
+using System.IO;
 
 namespace NURL
 {
@@ -45,22 +46,54 @@ namespace NURL
 
         public void Save(string path, string datas)
         {
-
+			 try
+            {
+                FileInfo fi = new FileInfo(path);
+                if (!fi.Directory.Exists)
+                {
+                    fi.Directory.Create();
+                }
+                File.WriteAllText(path, datas);
+                Console.WriteLine("save successful!!!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
-       //public string GetFileName(string url)
-       //{
-
-       //}
+        public string GetFileName(string url)
+        {
+            var urlParts = url.Split('/');
+            return urlParts[2];
+        }
 
         public void testConnectionTime(string url, int times)
         {
+            WebClient client = new WebClient();
 
+            for (int i = 0; i < times; i++)
+            {
+                var timeAtStart = DateTime.Now;
+                GetData(url);
+                var timeAtEnd = DateTime.Now;
+                Time = (timeAtEnd - timeAtStart).Milliseconds;
+                Console.WriteLine("Temps écoulé : " + Time.ToString() + " millisecondes.");
+            }
         }
 
         public void AvgTestConnection(string url, int times)
         {
-
+            TimeSpan cumul = TimeSpan.Zero;
+            for (int i = 0; i < times; i++)
+            {
+                var start = DateTime.Now;
+                GetData(url);
+                var end = DateTime.Now;
+                cumul += end - start;
+            }
+            avg = cumul.TotalMilliseconds / times;
+            Console.WriteLine("Temps moyen du chargement: " + avg + " millisecondes.");
 
         }
 
